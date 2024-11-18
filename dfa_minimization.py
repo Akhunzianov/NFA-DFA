@@ -122,6 +122,6 @@ def is_equivalent(first_dfa: NfaDfa, second_dfa: NfaDfa) -> bool:
 
 def is_accepting_all_words(dfa: NfaDfa) -> bool:
     dfa_min = minimize_dfa(dfa)
-    if dfa_min.finish_states == {0} and dfa_min.states == {0}:
+    if dfa_min.finish_states == {0} and dfa_min.states == {0} and len(dfa_min.transitions) > 0:
         return True
     return False

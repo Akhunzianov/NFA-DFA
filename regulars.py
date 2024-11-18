@@ -14,6 +14,7 @@ class RegularExpression:
         words = expression.split('|')
         add_on = 0
         commands = []
+        added_cmds = 0
         for word in words:
             add_on += 1
             if add_on != 1:
@@ -28,15 +29,16 @@ class RegularExpression:
                     curr_commands.append(RegCommand('char', symb))
                 elif symb == '?':
                     temp = curr_commands.pop()
-                    curr_commands.append(RegCommand('split', len(curr_commands) + 1 + add_on, len(curr_commands) + 2 + add_on))
+                    curr_commands.append(RegCommand('split', add_on + added_cmds, 1 + add_on + added_cmds))
                     curr_commands.append(temp)
                 elif symb == '*':
                     temp = curr_commands.pop()
-                    curr_commands.append(RegCommand('split', len(curr_commands) + 1 + add_on, len(curr_commands) + 3 + add_on))
+                    curr_commands.append(RegCommand('split', add_on + added_cmds, 2 + add_on + added_cmds))
                     curr_commands.append(temp)
-                    curr_commands.append(RegCommand('jmp', len(curr_commands) - 2 + add_on))
+                    curr_commands.append(RegCommand('jmp', -1 + add_on + added_cmds))
                 elif symb == '+':
-                    curr_commands.append(RegCommand('split', len(curr_commands) - 1 + add_on, len(curr_commands) + 1 + add_on))
+                    curr_commands.append(RegCommand('split', -1 + add_on + added_cmds, 1 + add_on + added_cmds))
+                added_cmds += 1
             commands.append(curr_commands)
 
         res_commands = []
