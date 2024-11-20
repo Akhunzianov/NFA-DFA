@@ -2,6 +2,7 @@ from nfa_dfa import parse_file
 from nfa_dfa_conversion import convert
 from regex_tests.tests import test
 from dfa_minimization import minimize_dfa, is_equivalent, is_accepting_all_words
+from regex_tests.antlr_tests import invalid_reg_test, test_regex_matching
 import os
 
 
@@ -90,11 +91,20 @@ def run_regex_tests():
         print('4. Not all tests passed')
 
 
+def run_new_regex_tests():
+    if invalid_reg_test() and test_regex_matching():
+        print('5. All tests passed')
+    else:
+        print('5. Not all tests passed')
+
+
 def main():
     run_nfa_dfa_tests()
     run_conversion_tests()
     run_minimization_test()
     run_regex_tests()
+    run_new_regex_tests()
+
 
 
 if __name__ == "__main__":
