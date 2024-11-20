@@ -1,0 +1,14 @@
+CHAR=1
+PIPE=2
+STAR=3
+PLUS=4
+QMARK=5
+LPAREN=6
+RPAREN=7
+WS=8
+'|'=2
+'*'=3
+'+'=4
+'?'=5
+'('=6
+')'=7
